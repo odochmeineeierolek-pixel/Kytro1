@@ -11,6 +11,9 @@ jobs:
       - uses: actions/setup-node@v4
         with: { node-version: 20, cache: npm }
       - run: npm install
+            - name: Dateiliste
+        shell: pwsh
+        run: Get-ChildItem -Recurse -File -Name | Where-Object { $_ -notmatch 'node_modules|\.git[\\/]' }
       - run: npm run lint
       - run: npm test
       - run: npm run dist
